@@ -3,7 +3,7 @@ name: Actualizar Datos COVID
 on:
   schedule:
     - cron: '0 0 * * *'   # Cada día a medianoche UTC
-  workflow_dispatch:      # Permite ejecutarlo manualmente
+  workflow_dispatch:
 
 jobs:
   update-data:
