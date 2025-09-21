@@ -1,10 +1,12 @@
 name: Pipeline COVID
 
 on:
-  workflow_dispatch:       # Se ejecuta manualmente
+  schedule:
+    - cron: '0 3 * * *'   # Todos los días a las 03:00 UTC
+  workflow_dispatch:
   push:
     branches:
-      - main               # También al hacer push a main
+      - main
 
 jobs:
   pipeline:
