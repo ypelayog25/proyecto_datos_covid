@@ -1,0 +1,48 @@
+name: Pipeline COVID
+
+on:
+  workflow_dispatch:       # Se ejecuta manualmente
+  push:
+    branches:
+      - main               # También al hacer push a main
+
+jobs:
+  pipeline:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📂 Checkout repositorio
+        uses: actions/checkout@v3
+
+      - name: 🐍 Configurar Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: 📦 Instalar dependencias
+        run: pip install -r requirements.txt
+
+      - name: 📥 Ejecutar extracción
+        run: python src/data_extraction.py
+
+      - name: 🧹 Ejecutar limpieza
+        run: python src/data_cleaning.py
+
+      - name: 🔄 Ejecutar transformación
+        run: python src/data_transform.py
+
+      - name: 📊 Ejecutar análisis
+        run: python src/data_analysis.py
+
+      - name: ✅ Verificar archivos procesados
+        run: ls -lh data/processed/
+
+      - name: ⬆️ Subir cambios al repositorio
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add data/processed/*.csv
+          git commit -m "📈 Pipeline ejecutado automáticamente: actualización de datos procesados"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
