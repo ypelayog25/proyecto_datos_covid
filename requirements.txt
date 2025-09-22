@@ -1,20 +1,20 @@
-# Procesamiento de datos
-pandas==2.0.3
-numpy==1.24.3
+# requirements.txt
 
-# Descarga y requests HTTP
+# Librerías principales
+numpy==1.26.4
+pandas==2.2.2
+
+# Procesamiento y limpieza
 requests==2.31.0
+python-dateutil==2.9.0.post0
 
-# Validación y limpieza
-python-dateutil==2.8.2
+# Análisis y visualización
+matplotlib==3.9.2
+seaborn==0.13.2
 
-# Visualización básica (para generar gráficos previos a Tableau)
-matplotlib==3.7.1
-seaborn==0.12.2
+# Soporte extra para análisis/tablas
+openpyxl==3.1.5
+xlrd==2.0.1
 
-# Para análisis y métricas
-scipy==1.11.1
-statsmodels==0.14.0
-
-# Soporte adicional
-openpyxl==3.1.2   # leer/escribir Excel 
+# Control de versiones y automatización
+pyyaml==6.0.2
